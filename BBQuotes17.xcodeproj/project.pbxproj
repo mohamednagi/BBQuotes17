@@ -30,11 +30,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		515718172D2C5BA10053FD8F /* BBQuotes17 */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = BBQuotes17;
-			sourceTree = "<group>";
-		};
 		515718282D2C5BA30053FD8F /* BBQuotes17Tests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = BBQuotes17Tests;
@@ -43,6 +38,11 @@
 		515718322D2C5BA30053FD8F /* BBQuotes17UITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = BBQuotes17UITests;
+			sourceTree = "<group>";
+		};
+		516B662F2D2E5D4B00BD21FB /* BBQuotes17 */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = BBQuotes17;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -75,7 +75,7 @@
 		5157180C2D2C5BA10053FD8F = {
 			isa = PBXGroup;
 			children = (
-				515718172D2C5BA10053FD8F /* BBQuotes17 */,
+				516B662F2D2E5D4B00BD21FB /* BBQuotes17 */,
 				515718282D2C5BA30053FD8F /* BBQuotes17Tests */,
 				515718322D2C5BA30053FD8F /* BBQuotes17UITests */,
 				515718162D2C5BA10053FD8F /* Products */,
@@ -108,7 +108,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				515718172D2C5BA10053FD8F /* BBQuotes17 */,
+				516B662F2D2E5D4B00BD21FB /* BBQuotes17 */,
 			);
 			name = BBQuotes17;
 			packageProductDependencies = (
