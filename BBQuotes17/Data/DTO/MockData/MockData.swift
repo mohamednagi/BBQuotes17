@@ -10,10 +10,10 @@ import Foundation
 struct MockData {
     
     static let shared = MockData()
+    private var decoder = JSONDecoder()
     
     private init(){}
     
-    private let decoder = JSONDecoder()
     
     func getSampleCharacter() -> Character {
         MockData.shared.decoder.keyDecodingStrategy = .convertFromSnakeCase

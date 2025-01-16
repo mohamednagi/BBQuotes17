@@ -25,7 +25,7 @@ struct QuoteView: View {
                     VStack {
                         Spacer(minLength: 60)
                         
-                        switch vm.currentState() {
+                        switch vm.state {
                         case .notStarted:
                             EmptyView()
                         case .fetching:

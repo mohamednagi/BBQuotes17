@@ -17,14 +17,25 @@ class ViewModelImpl: ViewModelProtocol, ObservableObject {
     
     @Published var quote: Quote
     @Published var character: Character
+    @Published var state: FetchServiceUseCaseImpl.Status = .notStarted
     
     
     init(useCase: FetchServiceUseCaseImpl) {
-        self.fetcherUseCase = useCase
+        fetcherUseCase = useCase
         
-        self.quote = MockData.shared.getSampleQuote()
+        quote = MockData.shared.getSampleQuote()
+        character = MockData.shared.getSampleCharacter()
         
-        self.character = MockData.shared.getSampleCharacter()
+        handleObservation(useCase: useCase)
+    }
+    
+    private func handleObservation(useCase: FetchServiceUseCaseImpl) {
+        useCase.state.bind { state in
+            DispatchQueue.main.async {[weak self] in
+                guard let `self` = self else {return}
+                self.state = state
+            }
+        }
     }
     
     func fetchData(from show: String) async {
@@ -34,9 +45,5 @@ class ViewModelImpl: ViewModelProtocol, ObservableObject {
                 if let character = returnedCharacter { self.character = character }
             }
         }
-    }
-    
-    func currentState() -> FetchServiceUseCaseImpl.Status {
-        return fetcherUseCase.currentState()
     }
 }

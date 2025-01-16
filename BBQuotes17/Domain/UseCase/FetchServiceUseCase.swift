@@ -8,15 +8,14 @@
 import Foundation
 
 protocol FetchServiceUseCaseProtocol {
-    typealias Status = FetchServiceUseCaseImpl.Status
     func fetchData(from show: String, completion: @escaping ((Quote?,Character?)->Void)) async
-    func currentState() -> Status
 }
 
 class FetchServiceUseCaseImpl: FetchServiceUseCaseProtocol {
     
-    private var state: Status = .notStarted
     private let repo: FetchServiceProtocol
+    
+    var state: DynamicObjects<Status> = DynamicObjects(.notStarted)
     var character: Character?
     var quote: Quote?
     
@@ -33,22 +32,18 @@ class FetchServiceUseCaseImpl: FetchServiceUseCaseProtocol {
     }
     
     func fetchData(from show: String, completion: @escaping ((Quote?,Character?)->Void)) async {
-        state = .fetching
+        state.value = .fetching
         do {
             quote = try await repo.FetchQuote(for: show)
             character = try await repo.FetchCharacter(quote?.character ?? "")
             if let char = character {
                 character!.death = try await repo.FetchDeath(for: char.name)
             }
-            state = .success
+            state.value = .success
             completion(quote,character)
             
         } catch {
-            state = .failed(error: error)
+            state.value = .failed(error: error)
         }
-    }
-    
-    func currentState() -> Status {
-        return state
     }
 }
