@@ -21,15 +21,10 @@ class ViewModelImpl: ViewModelProtocol, ObservableObject {
     
     init(useCase: FetchServiceUseCaseImpl) {
         self.fetcherUseCase = useCase
-        let decoder = JSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-        let quoteURL = Bundle.main.url(forResource: "samplequote", withExtension: "json")!
-        let quoteData = try! Data(contentsOf: quoteURL)
-        self.quote = try! decoder.decode(Quote.self, from: quoteData)
         
-        let characterURL = Bundle.main.url(forResource: "samplecharacter", withExtension: "json")!
-        let characterData = try! Data(contentsOf: characterURL)
-        self.character = try! decoder.decode(Character.self, from: characterData)
+        self.quote = MockData.shared.getSampleQuote()
+        
+        self.character = MockData.shared.getSampleCharacter()
     }
     
     func fetchData(from show: String) async {

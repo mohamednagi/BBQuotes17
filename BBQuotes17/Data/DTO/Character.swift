@@ -37,10 +37,6 @@ struct Character: Decodable {
         status = try container.decode(String.self, forKey: .status)
         portrayedBy = try container.decode(String.self, forKey: .portrayedBy)
         
-        let jsonDecoder = JSONDecoder()
-        jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
-        let deathURL = Bundle.main.url(forResource: "sampledeath", withExtension: "json")!
-        let deathData = try Data(contentsOf: deathURL)
-        death = try jsonDecoder.decode(Death.self, from: deathData)
+        death = MockData.shared.getSampleDeath()
     }
 }

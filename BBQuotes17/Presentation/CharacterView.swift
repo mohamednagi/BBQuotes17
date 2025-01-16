@@ -74,6 +74,6 @@ struct CharacterView: View {
     }
 }
 
-//#Preview {
-//    CharacterView(show: "Breaking Bad", character: ViewModel().character)
-//}
+#Preview {
+    CharacterView(show: "Breaking Bad", character: MockData.shared.getSampleCharacter())
+}
